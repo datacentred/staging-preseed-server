@@ -7,6 +7,15 @@ from a network boot image.  This is responsible for serving dynamic preseed
 content used to install the machine, and also finish scripts to install
 customisations expected to be in place.
 
+The controlling process first creates an ephemeral host entry identifying the
+templates to use for various API calls and any metadata used to render those
+templates.  A host is booted into a network installer which then contacts the
+preseed server which generates pressed and finish scripts on demand.  Once
+complete the calling process can destroy the host entry and continue.
+
+At present templates are served statically.  They can be found in the /views
+directory.
+
 ## Building
 
     apt-get -y install bundler make
@@ -47,6 +56,24 @@ Parameter | Type | Value
 preseed | String | Name of a preseed template to use
 finish | String | Name of a finish template to use
 metadata | Hash | Hash of arbitrary data for preseed/finish template generation
+
+#### Example
+
+    {
+      "preseed": "preseed.xenial-default.erb",
+      "finish": "finish.xenial-default.erb",
+      "metadata": {
+        "finish_url": "http://10.25.192.254:8421/hosts/ns.example.com/finish",
+        "networks": {
+          "ens3": {
+            "address": "10.25.192.250",
+            "netmask": "255.255.255.0",
+            "gateway": "10.25.192.1",
+            "nameserver": "10.25.192.250 10.25.192.251",
+          }
+        }
+      }
+    }
 
 ### POST /hosts/:host
 
