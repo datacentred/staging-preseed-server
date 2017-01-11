@@ -36,6 +36,6 @@ class StagingPreseedServer < Sinatra::Base
   end
 
   get '/hosts/:host/finish' do
-    HostsController.finish(params['finish'])
+    HostsController.finish(params['host'])
   end
 end

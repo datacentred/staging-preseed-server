@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Allow root login while we set things up
+sed -i 's/^PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# Install any prerequsitie packages here
+apt-get -y install software-properties-common
+apt-get -y install apt-transport-https
