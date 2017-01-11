@@ -1,5 +1,6 @@
 require 'json'
 require 'sinatra/base'
+require 'staging-preseed-server/hosts-controller'
 
 class StagingPreseedServer < Sinatra::Base
   set :port, 8421
@@ -15,20 +16,26 @@ class StagingPreseedServer < Sinatra::Base
   end
 
   get '/hosts' do
+    HostsController.list
   end
 
   get '/hosts/:host' do
+    HostsController.get(params['host'])
   end
 
   post '/hosts/:host' do
+    HostsController.create(params['host'], @body)
   end
 
   delete '/hosts/:host' do
+    HostsController.delete(params['host'])
   end
 
   get '/hosts/:host/preseed' do
+    HostsController.preseed(params['host'])
   end
 
   get '/hosts/:host/finish' do
+    HostsController.finish(params['finish'])
   end
 end
