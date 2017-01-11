@@ -10,7 +10,7 @@ ${PACKAGE}:
 	/usr/bin/bundle install --path vendor
 	# Copy over the binaries, libraries and vendor packages to the install directory
 	mkdir -p build/usr/share/${NAME}
-	cp -a bin lib vendor build/usr/share/${NAME}
+	cp -a bin lib vendor views build/usr/share/${NAME}
 	# Install the environment file in the install directory
 	mkdir -p build/etc/default
 	cp etc/${NAME} build/etc/default
