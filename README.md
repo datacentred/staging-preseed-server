@@ -78,7 +78,7 @@ Code | Meaning
 204  | Resource deleted successfully
 404  | Resource not found
 
-### GET /preseed/:host
+### GET /hosts/:host/preseed
 
 Get a rendered preseed file
 
@@ -89,7 +89,7 @@ Code | Meaning
 200  | Command success
 404  | Host not found
 
-### GET /preseed/:finish
+### GET /hosts/:host/finish
 
 Get a rendered finish script
 
