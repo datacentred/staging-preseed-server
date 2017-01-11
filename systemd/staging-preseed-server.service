@@ -1,0 +1,10 @@
+[Unit]
+Description=Serves templated preseed files in DataCentred's staging environment
+Requires=network.target
+
+[Service]
+EnvironmentFile=/etc/default/staging-preseed-server
+ExecStart=/usr/share/staging-preseed-server/bin/staging-preseed-server
+
+[Install]
+WantedBy=multi-user.target

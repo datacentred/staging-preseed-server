@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Start the service
+systemctl enable staging-preseed-server
+systemctl restart staging-preseed-server
