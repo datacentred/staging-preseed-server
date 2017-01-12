@@ -25,7 +25,6 @@ class HostsController
   end
 
   def self.preseed(name)
-    puts Hosts.get(name)
     return 404 unless Hosts.get(name)
     host = Hosts.get(name)
     metadata = host['metadata']
