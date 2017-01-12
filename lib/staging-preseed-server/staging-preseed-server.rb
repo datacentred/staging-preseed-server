@@ -3,6 +3,7 @@ require 'sinatra/base'
 require 'staging-preseed-server/hosts-controller'
 
 class StagingPreseedServer < Sinatra::Base
+  set :bind, '0.0.0.0'
   set :port, 8421
 
   before do
