@@ -2,7 +2,7 @@ require 'json'
 require 'sinatra/base'
 require 'staging-preseed-server/hosts-controller'
 
-class StagingPreseedServer < Sinatra::Base
+class Server < Sinatra::Base
   set :bind, '0.0.0.0'
   set :port, 8421
 

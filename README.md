@@ -18,9 +18,13 @@ directory.
 
 ## Building
 
-    apt-get -y install bundler make
     gem install fpm
-    make build
+    gem build staging-preseed-server.gemspec 
+    fpm -s gem -t deb -d ruby-sinatra \
+      --gem-package-name-prefix ruby \
+      --deb-systemd etc/systemd/system/staging-preseed-server.service \
+      --deb-default etc/default/staging-preseed-server \
+      staging-preseed-server-0.0.1.gem
 
 ## API
 
