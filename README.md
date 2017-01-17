@@ -18,6 +18,7 @@ directory.
 
 ## Building
 
+    apt-get -y install gcc make libffi-dev
     gem install fpm
     gem build staging-preseed-server.gemspec 
     fpm -s gem -t deb \
