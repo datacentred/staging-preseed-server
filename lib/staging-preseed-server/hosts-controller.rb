@@ -29,7 +29,7 @@ class HostsController
     host = Hosts.get(name)
     metadata = host['metadata']
     viewdir = File.expand_path('../../../views', __FILE__)
-    ERB.new(File.open("#{viewdir}/#{host['preseed']}").read).result(binding)
+    ERB.new(File.open("#{viewdir}/#{host['preseed']}").read, 0, '<>').result(binding)
   end
 
   def self.finish(name)
@@ -37,6 +37,6 @@ class HostsController
     host = Hosts.get(name)
     metadata = host['metadata']
     viewdir = File.expand_path('../../../views', __FILE__)
-    ERB.new(File.open("#{viewdir}/#{host['finish']}").read).result(binding)
+    ERB.new(File.open("#{viewdir}/#{host['finish']}").read, 0, '<>').result(binding)
   end
 end

@@ -6,3 +6,26 @@ sed -i 's/^PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 # Install any prerequsitie packages here
 apt-get -y install software-properties-common
 apt-get -y install apt-transport-https
+
+cat > /etc/network/interfaces <<EOF
+auto lo
+iface lo inet loopback
+<% metadata['networks'].each do |network| %>
+
+auto <%= network['interface'] %>
+iface <%= network['interface'] %> inet static
+  address <%= network['address'] %>
+  netmask <%= network['netmask'] %>
+<% if network['gateway'] %>
+  gateway <%= network['gateway'] %>
+<% end %>
+<% if network['nameservers'] %>
+  dns-nameservers <%= network['nameservers'].join(' ') %>
+<% end %>
+<% if network['options'] %>
+<% network['options'].each do |option| %>
+  <%= option %>
+<% end %>
+<% end %>
+<% end %>
+EOF
